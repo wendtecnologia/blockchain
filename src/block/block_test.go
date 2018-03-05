@@ -32,9 +32,9 @@ func TestBlock_setHash(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.block.setHash()
-			if fmt.Sprintf("%x", tt.block.hash) != string(tt.expected) {
-				t.Fatalf("expected %s, got: %x", tt.expected, tt.block.hash)
+			tt.block.SetHash()
+			if fmt.Sprintf("%x", tt.block.Hash) != string(tt.expected) {
+				t.Fatalf("expected %s, got: %x", tt.expected, tt.block.Hash)
 			}
 		})
 	}
