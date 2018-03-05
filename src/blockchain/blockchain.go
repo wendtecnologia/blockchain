@@ -9,15 +9,15 @@ type Blockchain struct {
 	blocks []*Block
 }
 
-func (bc *Blockchain) addBlock(data string) {
-	previousBlock := bc.blocks[len(bc.blocks)-1]
+func (blockchain *Blockchain) addBlock(data string) {
+	previousBlock := blockchain.blocks[len(blockchain.blocks)-1]
 
 	newBlock := NewBlock(data, previousBlock.hash)
 
-	bc.blocks = append(bc.blocks, newBlock)
+	blockchain.blocks = append(blockchain.blocks, newBlock)
 }
 
-// NewBlockchain start a new bc
+// NewBlockchain start a new blockchain
 func NewBlockchain() *Blockchain {
 	return &Blockchain{[]*Block{NewGenesisBlock()}}
 }
