@@ -1,4 +1,4 @@
-package main
+package block
 
 import (
 	"bytes"
@@ -15,15 +15,23 @@ type Block struct {
 	hash              []byte //hash of the current block
 }
 
-func (b *Block) setHash() {
-	timestamp := []byte(strconv.FormatInt(b.timestamp, 10))
-	headers := bytes.Join([][]byte{b.previousBlockHash, b.data, timestamp}, []byte{})
+func (block *Block) setHash() {
+	timestamp := []byte(strconv.FormatInt(block.timestamp, 10))
+	headers := bytes.Join([][]byte{block.previousBlockHash, block.data, timestamp}, []byte{})
 	hash := sha256.Sum256(headers)
-	b.hash = hash[:]
+
+	block.hash = hash[:]
 }
 
-func new(data string, previousBlockHash []byte) *Block {
+// NewBlock creates a new block
+func NewBlock(data string, previousBlockHash []byte) *Block {
 	block := &Block{time.Now().Unix(), []byte(data), previousBlockHash, []byte{}}
+
 	block.setHash()
 	return block
+}
+
+// NewGenesisBlock create a genesis block
+func NewGenesisBlock() *Block {
+	return NewBlock("Genesis Block", []byte{})
 }
