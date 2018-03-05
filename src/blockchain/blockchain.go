@@ -6,15 +6,15 @@ import (
 
 // Blockchain represents the database technology, to be immutable, trackabcle
 type Blockchain struct {
-	blocks []*Block
+	Blocks []*Block
 }
 
-func (blockchain *Blockchain) addBlock(data string) {
-	previousBlock := blockchain.blocks[len(blockchain.blocks)-1]
+func (blockchain *Blockchain) AddBlock(data string) {
+	previousBlock := blockchain.Blocks[len(blockchain.Blocks)-1]
 
-	newBlock := NewBlock(data, previousBlock.hash)
+	newBlock := NewBlock(data, previousBlock.Hash)
 
-	blockchain.blocks = append(blockchain.blocks, newBlock)
+	blockchain.Blocks = append(blockchain.Blocks, newBlock)
 }
 
 // NewBlockchain start a new blockchain
